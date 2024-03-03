@@ -1,5 +1,8 @@
 package lesschtroumpfs;
 
+/*
+ * @author CORREIA MENDES Leoanrdo
+ */
 public class Schtroumpf {
 	
 	// 3.1 Les attributs

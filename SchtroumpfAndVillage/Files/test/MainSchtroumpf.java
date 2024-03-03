@@ -2,6 +2,9 @@ package test;
 
 import lesschtroumpfs.Schtroumpf;
 
+/*
+ * @author CORREIA MENDES Leoanrdo
+ */
 public class MainSchtroumpf {
 
 	public static void main (String[] argv) {

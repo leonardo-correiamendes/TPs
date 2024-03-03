@@ -2,6 +2,9 @@ package lesschtroumpfs;
 
 import java.util.ArrayList;
 
+/*
+ * @author CORREIA MENDES Leoanrdo
+ */
 public class Village {
 	
 	// 4.1 Les attributs

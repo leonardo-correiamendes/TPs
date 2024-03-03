@@ -3,6 +3,9 @@ package test;
 import lesschtroumpfs.Schtroumpf;
 import lesschtroumpfs.Village;
 
+/*
+ * @author CORREIA MENDES Leoanrdo
+ */
 public class MainVillage {
 
 	public static void main (String[] argv) {

@@ -1,12 +1,13 @@
 package lesschtroumpfs;
 
+import java.util.ArrayList;
 
 public class Village {
 	
 	// 4.1 Les attributs
 	
 	private String nom;
-	private Schtroumpf[] lesSchtroumpfs;
+	private ArrayList<Schtroumpf> lesSchtroumpfs;
 	private int nbSchtroumpfs;
 	private int stockSalsepareille;
 	
@@ -20,11 +21,11 @@ public class Village {
 	public Village (String pfNomV, int pfStockSalsepareille, String[] pfNomsDesSchtroumpfs) {
 		this.nom = pfNomV;
 		this.stockSalsepareille = pfStockSalsepareille;
-		this.lesSchtroumpfs = new Schtroumpf[100];
+		this.lesSchtroumpfs = new ArrayList<Schtroumpf>();
 		
 		// Ajout des Schtroumpfs dans le tableau de Schtroumpf lesSchtroumpfs
 		for (int i = 0; i < pfNomsDesSchtroumpfs.length; i++) {
-			this.lesSchtroumpfs[i] = new Schtroumpf(pfNomsDesSchtroumpfs[i], (int)(Math.random()*150), this);
+			this.lesSchtroumpfs.add(new Schtroumpf(pfNomsDesSchtroumpfs[i], (int)(Math.random()*150), this));
 		}
 		
 		// Nb de Schtroumpfs
@@ -67,11 +68,12 @@ public class Village {
 		
 		// Presentation et chanson de chaque Schtroumpf
 		for (int i = 0; i < this.nbSchtroumpfs; i++) {
-			this.lesSchtroumpfs[i].sePresenter();
-			this.lesSchtroumpfs[i].chanter();
+			this.lesSchtroumpfs.get(i).sePresenter();
+			this.lesSchtroumpfs.get(i).chanter();
 			nbPresents ++;
 			
-			if (this.lesSchtroumpfs[i].estContent() == true) {
+			// Nombre de Schtroumpf contents
+			if (this.lesSchtroumpfs.get(i).estContent() == true) {
 				nbContents ++;
 			}
 		}
@@ -89,14 +91,14 @@ public class Village {
 	public Schtroumpf chefDuVillage() {
 		
 		// Schtroumpf le plus age
-		Schtroumpf schtroumpfPlusAge = this.lesSchtroumpfs[0];
+		Schtroumpf schtroumpfPlusAge = this.lesSchtroumpfs.getFirst();
 		
 		// Recuperation du Schtroumpf le plus age
 		for (int i = 1; i < this.nbSchtroumpfs; i++) {
 			
 			// Comparaison entre i et i+1
-			if (this.lesSchtroumpfs[i].getAge() > schtroumpfPlusAge.getAge()) {
-				schtroumpfPlusAge = this.lesSchtroumpfs[i];
+			if (this.lesSchtroumpfs.get(i).getAge() > schtroumpfPlusAge.getAge()) {
+				schtroumpfPlusAge = this.lesSchtroumpfs.get(i);
 			}
 		}
 		
@@ -119,8 +121,8 @@ public class Village {
 
 		// Ajout des Schtroumpfs heureux dans le tableau
 		for (int i = 0; i < this.nbSchtroumpfs; i++) {
-			if (this.lesSchtroumpfs[i].estContent() == true) {
-				SchtroumpfHeureux[cptSH] = this.lesSchtroumpfs[i];
+			if (this.lesSchtroumpfs.get(i).estContent() == true) {
+				SchtroumpfHeureux[cptSH] = this.lesSchtroumpfs.get(i);
 				cptSH ++;
 			}
 		}
@@ -144,10 +146,10 @@ public class Village {
 		for (int i = 0; i < this.nbSchtroumpfs; i ++) {
 			
 			// Verification pour savoir si le Schtroumpf est heureux ou pas
-			if (this.lesSchtroumpfs[i].estContent()) {
+			if (this.lesSchtroumpfs.get(i).estContent()) {
 				
-				this.lesSchtroumpfs[i].sePresenter();
-				this.lesSchtroumpfs[i].chanter();
+				this.lesSchtroumpfs.get(i).sePresenter();
+				this.lesSchtroumpfs.get(i).chanter();
 			}
 		}
 	}
@@ -169,7 +171,7 @@ public class Village {
 		
 		// Tous les Schtroumpfs mangent 
 		for (int i = 0; i < this.nbSchtroumpfs; i ++) {
-			this.lesSchtroumpfs[i].dinerAuVillage();
+			this.lesSchtroumpfs.get(i).dinerAuVillage();
 		}
 	}
 
@@ -189,8 +191,8 @@ public class Village {
 
 		// Ajout des Schtroumpfs heureux dans le tableau
 		for (int i = 0; i < this.nbSchtroumpfs; i++) {
-			if (this.lesSchtroumpfs[i].estContent() == true) {
-				SchtroumpfHeureux[cptSH] = this.lesSchtroumpfs[i];
+			if (this.lesSchtroumpfs.get(i).estContent() == true) {
+				SchtroumpfHeureux[cptSH] = this.lesSchtroumpfs.get(i);
 				cptSH ++;
 			}
 		}

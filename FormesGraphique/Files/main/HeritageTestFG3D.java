@@ -95,7 +95,6 @@ public class HeritageTestFG3D {
 
 		// Test Carre
 		System.out.println("Test Carre \n");
-		
 
 		Carre carreTrois;
 		carreTrois = new Carre (1, 1, 10);

@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<title>Le tiercé</title>
+
+    <script type="text/javascript">
+    function checkAnswer(button, details)
+    {
+        //HTML part variables
+        var thisAnswer = button.value;
+        form = button.parentNode.parentNode.parentNode;
+        div = button.parentNode.parentNode;
+        //Vars
+        var nbDivs = button.parentNode.parentNode.parentNode.getElementsByTagName('div').length;
+        var dict = {}; 
+        //Decode the encoded_string
+        var answers_string = decodeURIComponent(escape(window.atob(details)));
+        // console.log(answers_string);
+        var arrayDetails = answers_string.split(";;"); //Warning : use same string as "block_separator"
+        for (let i = 0; i < arrayDetails.length; i++) {
+            let array_temp = arrayDetails[i].split(",,"); //Warning : use same string as "subblocks_separator"
+            //Check if there is a justification
+            let justify_temp = completeDictionary(array_temp);
+            dict[array_temp[0]] = {
+                "validity" : array_temp[1],
+                "justify" : justify_temp,
+            };
+        }
+        if (dict[thisAnswer]["validity"] == 'True'){
+            if (div.id == '0'){
+                form.className = "quiz_headshot";
+            }else{
+                form.className = "quiz_ok";
+            }
+            //Delete the old justify part if there's one
+            var element = button.parentNode.parentNode.parentNode.getElementsByTagName('div')[nbDivs-1];
+            if(div.id != '0'){
+                for(let i = 0; i < element.getElementsByTagName('p').length; i++)
+                {
+                    element.removeChild(element.getElementsByTagName('p')[i]);
+                }
+            }
+            //Display the answers details
+            for(let i = 0; i < arrayDetails.length; i++)
+            {
+                let tag = document.createElement("p");
+                let text = document.createTextNode(dict[i]["justify"]);
+                tag.appendChild(text);
+                element.appendChild(tag); 
+            }
+        }else{
+            //Change the class' id to have a different color next
+            form.className = "quiz_error";
+            div.id = "1";
+            //Display the answer details
+            var tag = document.createElement("p");
+            var text = document.createTextNode(dict[thisAnswer]["justify"]);
+            tag.appendChild(text);
+            var element = button.parentNode.parentNode.parentNode.getElementsByTagName('div')[nbDivs-1];
+            //Delete the old justify part if there's one
+            if(element.getElementsByTagName('p')[0] != null){
+            var nbp = element.getElementsByTagName('p').length;
+                for(let i = 0; i < nbp; i++)
+                {
+                    element.removeChild(element.getElementsByTagName('p')[0]);
+                }
+            }
+            element.appendChild(tag);
+        }
+    }
+    function completeDictionary(array)
+    {
+        let str = "";
+        let true_str = "Oui";
+        let false_str = "Non";
+        if (array[2] != "None") { // There is a justification
+            if (array[1] == "True") { // There is a justification AND the answer is correct
+              str += true_str + ". " + array[2] + "."
+            }else{ // There is a justification BUT the answer is wrong
+              str += array[2] + "."
+        }
+        }else { // There is'nt a justification
+            if (array[1] == "True") {// There is'nt a justification AND the answer is correct
+              str += true_str + " !"
+            }else{ // There is'nt a justification BUT the answer is wrong
+              str += false_str + " !"
+            }
+        }
+        return str;
+    }
+    </script>
+    
+    <style type="text/css">
+    .quiz_todo
+{
+padding: 10px;
+margin: 10px;
+border-radius: 10px;
+border: 10px solid #8597C9;
+}
+
+.quiz_error
+{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 10px solid #cf6a6a;
+}
+
+.quiz_headshot
+{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 10px solid #83dd99;
+}
+
+.quiz_ok
+{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 10px solid #539165;
+}
+
+.answers
+{
+    display: flex;
+    justify-content: space-around;
+    // margin-left: 10%;
+    // margin-right: 10%;
+    // padding-bottom: 15px;
+    // padding-top: 15px;
+}
+
+
+.answers p
+{
+    text-align: center;
+    // font-size: 1.2em;
+}
+
+.mcq_question
+{
+    // font-weight: bold;
+    // font-size: 1.1em;
+}
+
+#justify
+{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    // font-size: 1.3em;
+}
+
+#justify p
+{
+    // padding: 10px;
+    flex: 1 1 0;
+    max-width: 100%;
+    overflow: auto;
+}
+</style>
+    
+    <script type="text/javascript">
+    function ouvrirFermerHint(span)
+    {
+        var divContenu = span.parentNode.parentNode.getElementsByTagName('td')[1].getElementsByTagName('div')[0];
+
+        if(divContenu.style.display == 'block')
+            divContenu.style.display = 'none';
+        else
+            divContenu.style.display = 'block';
+    }
+    </script>
+    
+<style type="text/css">
+
+/*
+:Author: Pascal Sotin
+:Contact: pascal.sotin@univ-tlse2.fr
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for use with Docutils. 
+*/
+
+/* BEGIN: @import url(html4css1.css); */
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7514 2012-09-14 14:27:12Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.section li {
+    margin-bottom: 0.5em;
+}
+
+.section ul {
+    margin-top: 0.5em;
+}
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+/* END: @import url(html4css1.css); */
+
+/* Customizations go here. */
+
+body {
+    background: #ddccff;
+    color:rgba(0,0,0,.9);
+/*    rgb(163, 25, 25)
+    linear-gradient(to bottom,
+		    rgb(170, 170, 255),
+		    rgb(163, 25, 25)); Historical gradient. Deemed ugly. */
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+}
+
+a:link, a:hover, a:visited {
+    color: red;
+}
+
+a.internal:link, a.internal:visited {
+    color: rgb(0, 0, 60);
+    text-decoration: none;
+}
+
+a.internal:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+h1 {
+    color: #336600
+}
+
+h1.title {
+    text-align: center;
+    color: black;
+}
+
+div.section {
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    margin: 4px;
+    padding-left: 6px;
+    background: white;
+    
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    max-width: 70em;
+}
+
+h1 a:hover, h1 a:visited, h1 a:link, h1 a:active
+{
+    color: #336600;
+/*    color: rgb(0, 0, 60); */
+    text-decoration: none;
+}
+
+h2 {
+    margin-left: -6px;
+    margin-top: 0px;
+    padding: 6px;
+    background: rgb(170, 170, 255);
+}
+
+h2 a:hover, h2 a:visited, h2 a:link, h2 a:active
+{
+/*    color: #CC0000; */
+    color: black;
+    text-decoration: none;
+}
+
+h3 a:link, h3 a:visited, h3 a:hover {
+   color: rgb(163, 25, 25);
+   text-decoration: none;
+}
+
+/** teacher **/
+
+div.teacher
+{
+    background: rgb(246, 209, 255);
+    border-color: red;
+}
+
+/** solution **/
+
+div.solution
+{
+    background: rgb(109, 255, 109);
+    border-color: green;
+}
+
+/** spoilers **/
+
+div.spoiler
+{
+    padding: 10px;
+    width: 100%;
+    border: 1px solid black;
+    
+    background-color: lightblue;
+    display: block;
+    
+    padding: 3px;
+    min-height: 1.25em;
+}
+
+div.spoilerDiv
+{
+    width: 95%;
+    
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+div.contenuSpoiler
+{
+    display: none;
+}
+
+.lienAfficher
+{
+    text-decoration: none;
+    color: darkblue;
+    cursor: pointer;
+}
+
+.lienAfficher:hover
+{
+    text-decoration: underline;
+}
+
+/** pygmentize **/
+
+.code                              { background: #f8f8f8; }
+.code .comment                     { color: #008800; font-style: italic }
+.code .error                       { border: 1px solid #FF0000 }
+.code .generic.deleted             { color: #A00000 }
+.code .generic.emph                { font-style: italic }
+.code .generic.error               { color: #FF0000 }
+.code .generic.heading             { color: #000080; font-weight: bold }
+.code .generic.inserted            { color: #00A000 }
+.code .generic.output              { color: #808080 }
+.code .generic.prompt              { color: #000080; font-weight: bold }
+.code .generic.strong              { font-weight: bold }
+.code .generic.subheading          { color: #800080; font-weight: bold }
+.code .generic.traceback           { color: #0040D0 }
+.code .keyword                     { color: #AA22FF; font-weight: bold }
+.code .keyword.pseudo              { font-weight: normal }
+.code .literal.number              { color: #666666 }
+.code .literal.string              { color: #BB4444 }
+.code .literal.string.doc          { color: #BB4444; font-style: italic }
+.code .literal.string.escape       { color: #BB6622; font-weight: bold }
+.code .literal.string.interpol     { color: #BB6688; font-weight: bold }
+.code .literal.string.other        { color: #008000 }
+.code .literal.string.regex        { color: #BB6688 }
+.code .literal.string.symbol       { color: #B8860B }
+.code .name.attribute              { color: #BB4444 }
+.code .name.builtin                { color: #AA22FF }
+.code .name.class                  { color: #0000FF }
+.code .name.constant               { color: #880000 }
+.code .name.decorator              { color: #AA22FF }
+.code .name.entity                 { color: #999999; font-weight: bold }
+.code .name.exception              { color: #D2413A; font-weight: bold }
+.code .name.function               { color: #00A000 }
+.code .name.label                  { color: #A0A000 }
+.code .name.namespace              { color: #0000FF; font-weight: bold }
+.code .name.tag                    { color: #008000; font-weight: bold }
+.code .name.variable               { color: #B8860B }
+.code .operator                    { color: #666666 }
+.code .operator.word               { color: #AA22FF; font-weight: bold }
+
+/** Infobulle **/
+
+a.info {
+   position: relative;
+   color: black;
+   text-decoration: none;
+}
+
+a.info span {
+   display: none; /* On masque l'infobulle. */
+}
+
+a.info:hover {
+   background: none; /* Correction d'un bug d'Internet Explorer. */
+   z-index: 500; /* On définit une valeur pour l'ordre d'affichage. */
+   cursor: help; /* On change le curseur par défaut par un curseur d'aide. */
+}
+
+a.info:hover span {
+   display: inline; /* On affiche l'infobulle. */
+   position: absolute;
+   white-space: nowrap; /* On change la valeur de la propriété white-space pour qu'il n'y ait pas de retour à la ligne non désiré. */
+   top: 30px; /* On positionne notre infobulle. */
+   left: 20px;
+   background: white;
+   color: green;
+   padding: 3px;
+   border: 1px solid green;
+   border-left: 4px solid green;
+}
+
+/** ASCIIDOC Admonitions */
+
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+/* Overriding the default admonition style */
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 0em ;
+  border: none ;
+  padding: 0em }
+
+.content h4 {
+    margin-top: 0em ;
+}
+
+.admonitionblock .clickable {
+    cursor: pointer;
+}
+
+/*
+.content h4.clickable:hover {
+    text-decoration: underline;
+}
+/* Issue: students might forget to open the section...
+*/
+
+.content h4.clickable {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+<div class="document" id="le-tierce">
+<h1 class="title">Le tiercé</h1>
+
+<div class="contents topic" id="sommaire">
+<p class="topic-title">Sommaire</p>
+<ul class="simple">
+<li><a class="reference internal" href="#environnement" id="toc-entry-1">Environnement</a></li>
+<li><a class="reference internal" href="#rappels-sur-l-usage-des-ia" id="toc-entry-2">Rappels sur l'usage des IA</a></li>
+<li><a class="reference internal" href="#le-jeu-du-tierce" id="toc-entry-3">Le jeu du tiercé</a></li>
+<li><a class="reference internal" href="#travail-a-faire" id="toc-entry-4">Travail à faire</a><ul>
+<li><a class="reference internal" href="#prise-en-main" id="toc-entry-5">Prise en main</a></li>
+<li><a class="reference internal" href="#exercice-1-score-d-un-cheval" id="toc-entry-6">Exercice 1 - score d'un cheval</a></li>
+<li><a class="reference internal" href="#exercice-2-resultats-d-une-course" id="toc-entry-7">Exercice 2 - résultats d'une course</a></li>
+<li><a class="reference internal" href="#exercice-3-etablir-le-tierce-gagnant" id="toc-entry-8">Exercice 3 - établir le tiercé gagnant</a></li>
+<li><a class="reference internal" href="#exercice-4-gain" id="toc-entry-9">Exercice 4 - gain</a></li>
+<li><a class="reference internal" href="#exercice-5-fuite-memoire" id="toc-entry-10">Exercice 5 - fuite mémoire</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#et-en-bonus" id="toc-entry-11">Et en bonus...</a><ul>
+<li><a class="reference internal" href="#exercice-6-arrivee-dans-le-desordre" id="toc-entry-12">Exercice 6 - arrivée dans le désordre</a></li>
+<li><a class="reference internal" href="#exercice-7-photo-finish" id="toc-entry-13">Exercice 7 - photo finish</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="figure align-center">
+<img alt="image/galop.png" src="image/galop.png" />
+</div>
+<div class="section" id="environnement">
+<h1><a class="toc-backref" href="#toc-entry-1">Environnement</a></h1>
+<ol class="arabic simple">
+<li>Se connecter à <a class="reference external" href="https://replit.com">Replit</a>.</li>
+<li><em>Forker</em> le projet <a class="reference external" href="https://replit.com/&#64;PascalSotin/TP5-Tierce">TP5-Tiercé</a> de l'utilisateur <em>PascalSotin</em>.</li>
+<li>Parcourir le fichier <code>main.c</code> en prêtant attention :<ul>
+<li>aux définitions de structures (<code>typedef</code>) ;</li>
+<li>aux fonctions et à leurs signatures ;</li>
+<li>aux <code>/* TODO */</code> qui signalent des fonctions qui ne sont pas encore codées ;</li>
+<li>à la directive <code>#define</code> qui crée une constante (avant la fonction <code>main</code>) ;</li>
+<li>au code de la fonction <code>main</code>.</li>
+</ul>
+</li>
+</ol>
+<form class="quiz_todo">
+<p class="mcq_question">Quand une fonction retourne un tableau comme résultat...</p><div class="answers" id="0"><p><input type="radio" class="clickable" name="answer" value="0" onclick="checkAnswer(this,'MCwsRmFsc2UsLE5vbmU7OzEsLFRydWUsLEV0IG9uIGZlcmEgYXR0ZW50aW9uIMOgIG5lIHBhcyByZXRvdXJuZXIgdW4gdGFibGVhdSBsb2NhbCAh');"/>... le contenu du tableau est recopié.</p><p><input type="radio" class="clickable" name="answer" value="1" onclick="checkAnswer(this,'MCwsRmFsc2UsLE5vbmU7OzEsLFRydWUsLEV0IG9uIGZlcmEgYXR0ZW50aW9uIMOgIG5lIHBhcyByZXRvdXJuZXIgdW4gdGFibGVhdSBsb2NhbCAh');"/>... seule adresse du tableau est transmise.</p></div><div id="justify"></div></form></div>
+<div class="section" id="rappels-sur-l-usage-des-ia">
+<h1><a class="toc-backref" href="#toc-entry-2">Rappels sur l'usage des IA</a></h1>
+<p>Utiliser une IA style ChatGPT ou l'assistant intégré à Replit serait dommageable pour votre apprentissage. Nous vous invitons à :</p>
+<ul>
+<li><p class="first"><strong>ne pas utiliser</strong> ChatGPT &amp; co. pour lui demander des réponses aux questions du TP ;</p>
+</li>
+<li><p class="first">toujours <strong>désactiver</strong> l'IA intégrée à Replit (activée par défaut).</p>
+<img alt="IA.png" src="IA.png" />
+</li>
+</ul>
+<p>Vous pouvez utilisez ChatGPT pour :</p>
+<ul class="simple">
+<li>lui demander des exemples de code faisant ceci ou cela ;</li>
+<li>lui poser des questions à propos de tel ou tel mécanisme en C.</li>
+</ul>
+</div>
+<div class="section" id="le-jeu-du-tierce">
+<h1><a class="toc-backref" href="#toc-entry-3">Le jeu du tiercé</a></h1>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;"><p>Aujourd'hui on veut :</p>
+<ul class="simple">
+<li>Écrire un <strong>super jeu</strong> de paris sur des courses de chevaux.</li>
+<li><strong>Réviser</strong> les structures, les pointeurs, les tableaux.</li>
+</ul>
+</div></tr></table></div><p>Le jeu du <strong>tiercé</strong> consiste à deviner quels seront les <strong>trois premiers arrivés</strong> dans une course de chevaux. On gagne :</p>
+<ol class="arabic simple">
+<li>Beaucoup d'argent si on trouve les trois premiers, dans l'ordre ;</li>
+<li>Pas mal d'argent si on trouve les deux premiers, dans l'ordre ;</li>
+<li>Un peu d'argent si on trouve le premier ;</li>
+<li>Un peu d'argent si on trouve les trois premiers, mais dans le désordre.</li>
+</ol>
+</div>
+<div class="section" id="travail-a-faire">
+<h1><a class="toc-backref" href="#toc-entry-4">Travail à faire</a></h1>
+<div class="section" id="prise-en-main">
+<h2><a class="toc-backref" href="#toc-entry-5">Prise en main</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Le jeu marche <em>presque</em>. On peut miser et entrer son tiercé.</div></tr></table></div><p><strong>Lancer le jeu</strong> et jouer un peu.</p>
+<p>Constater que <strong>la course n'a jamais lieu</strong>, donc qu'on rembourse sans cesse les mises.</p>
+</div>
+<div class="section" id="exercice-1-score-d-un-cheval">
+<h2><a class="toc-backref" href="#toc-entry-6">Exercice 1 - score d'un cheval</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  class="clickable" onclick="ouvrirFermerHint(this);" />
+        </td><td class="content"><h4 class="clickable" onclick="ouvrirFermerHint(this);">Score d'un cheval</h4><div style="display: block;"><p>On simule le score d'un cheval dans une course en lançant des dés à cent faces numérotées de 1 à 100 (cf. fonction <code>d100</code>).</p>
+<p>Les chevaux ont une force (de 1 à 100) et une chance (vrai ou faux).</p>
+<ul class="simple">
+<li>Le score d'un cheval ordinaire, c'est : <em>force + deux dés</em> ;</li>
+<li>le score d'un cheval chanceux, c'est : <em>force + trois dés</em>.</li>
+</ul>
+<p>Le cheval avec le <strong>plus haut score</strong> gagne la course.</p>
+</div></tr></table></div><div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Les joueuses et les joueurs ne connaissent ni la force ni la chance des chevaux,
+mais celle ci est la même de course en course...</div></tr></table></div><p><strong>Programmer</strong> la fonction <code>score_cheval</code> en accord avec sa documentation.</p>
+</div>
+<div class="section" id="exercice-2-resultats-d-une-course">
+<h2><a class="toc-backref" href="#toc-entry-7">Exercice 2 - résultats d'une course</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Ici, on veut déterminer et afficher les <strong>scores</strong> de de chaque cheval lors d'une course.</div></tr></table></div><form class="quiz_todo">
+<p class="mcq_question">Si x est une structure, quelle expression s'évaluera en l'adresse de cette structure :</p><div class="answers" id="0"><p><input type="radio" class="clickable" name="answer" value="0" onclick="checkAnswer(this,'MCwsRmFsc2UsLEMnZXN0IGwnaWTDqWUsIG1haXMgYWRyZXNzb2YgbidleGlzdGUgcGFzLjs7MSwsRmFsc2UsLMOHYSBjJ2VzdCBsJ29ww6lyYXRpb24gaW52ZXJzZSAoYWRyZXNzZSAtPiBkb25uw6llKS47OzIsLEZhbHNlLCxDZXJ0YWluZW1lbnQgcGFzLjs7MywsVHJ1ZSwsTm9uZQ==');"/>addressof(x)</p><p><input type="radio" class="clickable" name="answer" value="1" onclick="checkAnswer(this,'MCwsRmFsc2UsLEMnZXN0IGwnaWTDqWUsIG1haXMgYWRyZXNzb2YgbidleGlzdGUgcGFzLjs7MSwsRmFsc2UsLMOHYSBjJ2VzdCBsJ29ww6lyYXRpb24gaW52ZXJzZSAoYWRyZXNzZSAtPiBkb25uw6llKS47OzIsLEZhbHNlLCxDZXJ0YWluZW1lbnQgcGFzLjs7MywsVHJ1ZSwsTm9uZQ==');"/>*x</p><p><input type="radio" class="clickable" name="answer" value="2" onclick="checkAnswer(this,'MCwsRmFsc2UsLEMnZXN0IGwnaWTDqWUsIG1haXMgYWRyZXNzb2YgbidleGlzdGUgcGFzLjs7MSwsRmFsc2UsLMOHYSBjJ2VzdCBsJ29ww6lyYXRpb24gaW52ZXJzZSAoYWRyZXNzZSAtPiBkb25uw6llKS47OzIsLEZhbHNlLCxDZXJ0YWluZW1lbnQgcGFzLjs7MywsVHJ1ZSwsTm9uZQ==');"/>[x]</p><p><input type="radio" class="clickable" name="answer" value="3" onclick="checkAnswer(this,'MCwsRmFsc2UsLEMnZXN0IGwnaWTDqWUsIG1haXMgYWRyZXNzb2YgbidleGlzdGUgcGFzLjs7MSwsRmFsc2UsLMOHYSBjJ2VzdCBsJ29ww6lyYXRpb24gaW52ZXJzZSAoYWRyZXNzZSAtPiBkb25uw6llKS47OzIsLEZhbHNlLCxDZXJ0YWluZW1lbnQgcGFzLjs7MywsVHJ1ZSwsTm9uZQ==');"/>&x</p></div><div id="justify"></div></form><p><strong>Programmer</strong> les fonctions <code>afficher_scores</code> et <code>score_course</code> en accord avec leur documentation.</p>
+<p><strong>Ajouter</strong> un appel à <code>score_course</code> puis un appel à <code>afficher_scores</code> dans la fonction <code>main</code>.</p>
+</div>
+<div class="section" id="exercice-3-etablir-le-tierce-gagnant">
+<h2><a class="toc-backref" href="#toc-entry-8">Exercice 3 - établir le tiercé gagnant</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Ici, on veut établir qui sont les <strong>trois premiers chevaux.</strong></div></tr></table></div><p><strong>Programmer</strong> les fonctions <code>afficher_tierce</code> et <code>etablir_tierce</code> en accord avec leur documentation.</p>
+<p><strong>Ajouter</strong> un appel à <code>etablir_tierce</code> puis un appel à <code>afficher_tierce</code> dans la fonction <code>main</code>.</p>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  class="clickable" onclick="ouvrirFermerHint(this);" />
+        </td><td class="content"><h4 class="clickable" onclick="ouvrirFermerHint(this);">Je ne sais pas comment appeler la fonction etablir_tierce...</h4><div style="display: none;"><p>Contrairement à la fonction <code>score_course</code>, qui retourne un <code>int*</code>, la fonction <code>etablir_tierce</code> ne retourne <strong>rien</strong> (<code>void</code>). On ne peut <strong>pas écrire</strong> ceci :</p>
+<pre class="code c literal-block">
+<span class="keyword type">int</span><span class="whitespace"> </span><span class="operator">*</span><span class="name">tierce</span><span class="whitespace"> </span><span class="operator">=</span><span class="whitespace"> </span><span class="name">etablir_tierce</span><span class="punctuation">(...);</span><span class="whitespace">  </span><span class="comment single">// NON !</span>
+</pre>
+<p>La fonction <code>etablir_tierce</code> attend un <strong>paramètre en sortie</strong>.
+C'est à dire que pour obtenir le tiercé il faut lui passer
+un tableau qu'elle va remplir. L'appel devient :</p>
+<pre class="code c literal-block">
+<span class="keyword type">int</span><span class="whitespace"> </span><span class="name">tierce</span><span class="punctuation">[</span><span class="literal number integer">3</span><span class="punctuation">];</span><span class="whitespace">
+</span><span class="name">etablir_tierce</span><span class="punctuation">(...,</span><span class="whitespace"> </span><span class="name">tierce</span><span class="punctuation">,</span><span class="whitespace"> </span><span class="punctuation">...);</span><span class="whitespace">  </span><span class="comment single">// modifie le contenu du tableau tierce</span>
+</pre>
+<p>Ce paramètre en sortie est <strong>signalé</strong> dans le code de la fonction <code>etablir_tierce</code> par :</p>
+<ul class="simple">
+<li>la documentation, qui indique <code>tierce</code> comme <code>param[out]</code> ;</li>
+<li>l'absence du mot clé <code>const</code>, qui n'apparaît pas devant le paramètre <code>tierce</code> dans la signature.</li>
+</ul>
+</div></tr></table></div></div>
+<div class="section" id="exercice-4-gain">
+<h2><a class="toc-backref" href="#toc-entry-9">Exercice 4 - gain</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Dans cet exercice, on ne prend pas en compte le tiercé dans le désordre (cas numéro 4 de la présentation du jeu).</div></tr></table></div><p><strong>Programmer</strong> la fonction <code>gain_pari</code> en accord avec sa documentation.</p>
+<p>Modifier la fonction <code>main</code> pour que la joueuse ou le joueur <strong>reçoive l'argent</strong> qui lui est dû.</p>
+<p>On affichera un message qui indiquera si on a <strong>perdu ou gagné</strong>, et combien on a gagné, le cas échéant.</p>
+</div>
+<div class="section" id="exercice-5-fuite-memoire">
+<h2><a class="toc-backref" href="#toc-entry-10">Exercice 5 - fuite mémoire</a></h2>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Si vous n'avez pas mis d'appel à <code>free</code> quelque part dans votre code, alors votre programme souffre de fuite de mémoire : il grignotte doucement mais sûrement la mémoire vive.</div></tr></table></div><p>Déterminer les endroits où vous faites de l'allocation mémoire et s'assurer que cette mémoire est <strong>libérée</strong> lorsqu'elle n'est <strong>plus utilisée</strong>.</p>
+</div>
+</div>
+<div class="section" id="et-en-bonus">
+<h1><a class="toc-backref" href="#toc-entry-11">Et en bonus...</a></h1>
+<div class="section" id="exercice-6-arrivee-dans-le-desordre">
+<h2><a class="toc-backref" href="#toc-entry-12">Exercice 6 - arrivée dans le désordre</a></h2>
+<p>Si la joueuse ou le joueur parie les bons chevaux mais <strong>dans le désordre</strong>, on paie un gain de consolation à 7 fois la mise.</p>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">On peut se demander si c'est bien prudent, économiquement, de faire ça. Quelle était l'espérance de gain pour un euro misé
+avant cette nouvelle régle ? Et maintenant ? Bien des questions qui trouveraient leurs réponses avec un peu de <strong>dénombrement</strong>.</div></tr></table></div></div>
+<div class="section" id="exercice-7-photo-finish">
+<h2><a class="toc-backref" href="#toc-entry-13">Exercice 7 - photo finish</a></h2>
+<p>Si deux chevaux (ou plus) dans les trois premiers obtiennent le <strong>même score</strong>, on les départagera lors de l'établissement du tiercé par un jet de dé supplémentaire.</p>
+<p>Les joueurs et les joueuses doivent être tenus informés (affichage) de l'existence de ce départage et de son résultat.</p>
+<div class="admonitionblock"><table>
+        <tr><td class="icon">
+        <img alt="My Image" src="data:image/png;base64,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"  />
+        </td><td class="content"><div style="display: block;">Pour augmenter la probabilité de voir ce genre de chose apparaître, transformez temporairement votre dé 100 en dé 4, voire en dé 2.</div></tr></table></div></div>
+</div>
+</div>
+</body>
+</html>

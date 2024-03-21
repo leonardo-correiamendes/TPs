@@ -1,7 +1,7 @@
 
 public class HeritageTestFG3D {
 	public static void main(String[] args) {
-		// Compl�ter les test ici.
+		// Completer les test ici.
 		
 		// Exemple de test FormeGraphique
 		
@@ -80,21 +80,131 @@ public class HeritageTestFG3D {
 		// 4.1) 2. Écrire un petit test de la classe dans la méthode main() :
 
 		// a. Créer un objet avec un constructeur Cercle par défaut (sans paramètres).
-		Cercle cerlcUn = new Cercle();
+		Cercle cerclUn = new Cercle();
+		Cercle cerclDeux = new Cercle(15, 15, 4);
 
 		// b. Lui appliquer la méthode afficher() héritée.
-		cerlcUn.afficher();
+		cerclUn.afficher();
 		System.out.println();
 
+		cerclDeux.afficher();
+		System.out.println();
+
+		// Lui appliquer les méthodes transformateurs de la classe.
+		cerclUn.setRayon(5);
+		cerclDeux.setRayon(8);
+
 		// c. Lui appliquer les méthodes transformateurs héritées.
-		cerlcUn.setOrigineX(7);
-		cerlcUn.setOrigineY(7);
+		cerclUn.setOrigineX(7);
+		cerclUn.setOrigineY(7);
+
+		cerclDeux.setOrigineX(25);
+		cerclDeux.setOrigineY(25);
+
+		// Lui appliquer la méthode afficher().
+		cerclUn.afficher();
+		cerclDeux.afficher();
+
+		// Lui appliquer les méthodes accesseurs de la classe (dans un System.out.println())
+		System.out.println("Cercle Un : rayon " + cerclUn.getRayon() + "\n");
+		System.out.println("Cercle Deux : rayon " + cerclDeux.getRayon() + "\n");
 
 		// d. Lui appliquer les méthodes accesseurs héritées (dans un System.out.println()).
-		System.out.println("Cercle Un : abscisse " + cerlcUn.getOrigineX() + " ordonnee " + cerlcUn.getOrigineY() + "\n");
+		System.out.println("Cercle Un : abscisse " + cerclUn.getOrigineX() + " ordonnee " + cerclUn.getOrigineY() + "\n");
+
+		System.out.println("Cercle Duex : abscisse " + cerclDeux.getOrigineX() + " ordonnee " + cerclDeux.getOrigineY() + "\n");
+
+		// Test Cylindre
+
+		// Créer un objet avec chaque constructeur défini dans la classe (x constructeurs ⇒ x création d’objets différentes).
+		Cylindre cylUn = new Cylindre();
+		Cylindre cylDeux = new Cylindre(40, 40, 10, 3);
+
+		// Pour chaque objet créé :
+		// appliquer la méthode afficher().
+		cylUn.afficher();
+		System.out.println();
+
+		cylDeux.afficher();
+		System.out.println();
+
+		// Lui appliquer les méthodes transformateurs de la classe.
+		cylUn.setRayon(1);
+		cylDeux.setRayon(9);
+
+		cylUn.setHauteur(2);
+		cylDeux.setHauteur(7);
+
+		// Lui appliquer les méthodes transformateurs héritées.
+		cylUn.setOrigineX(60);
+		cylDeux.setOrigineX(80);
+
+		cylUn.setOrigineY(60);
+		cylDeux.setOrigineY(80);
+
+		// Lui appliquer la méthode afficher().
+		cylUn.afficher();
+		System.out.println();
+
+		cylDeux.afficher();
+		System.out.println();
+
+		// Lui appliquer les méthodes accesseurs de la classe (dans un System.out.println()).
+		System.out.println("Cylindre Un : rayon " + cylUn.getRayon() + "\n");
+		System.out.println("Cylindre Un : hauteur " + cylUn.getHauteur() + "\n");
+		
+		System.out.println("Cylindre Deux : rayon " + cylDeux.getRayon() + "\n");
+		System.out.println("Cylindre Deux : hauteur " + cylDeux.getHauteur() + "\n");
+
+		// Lui appliquer les méthodes accesseurs héritées (dans un System.out.println()).
+		System.out.println("Cylindre Un : abscisse " + cylUn.getOrigineX() + " ordonnee " + cylUn.getOrigineY() + "\n");
+
+		System.out.println("Cylindre Deux : abscisse " + cylDeux.getOrigineX() + " ordonnee " + cylDeux.getOrigineY() + "\n");
+
+
+		// Test Sphere
+
+		// Créer un objet avec chaque constructeur défini dans la classe (x constructeurs ⇒ x création d’objets différentes).
+		Sphere sphUn = new Sphere();
+		Sphere sphDeux = new Sphere(50, 50, 20);
+
+		// appliquer la méthode afficher().
+		sphUn.afficher();
+		System.out.println();
+
+		sphDeux.afficher();
+		System.out.println();
+
+		// Lui appliquer les méthodes transformateurs de la classe.
+		sphUn.setRayon(5);
+		sphDeux.setRayon(40);
+
+		// Lui appliquer les méthodes transformateurs héritées.
+		sphUn.setOrigineX(100);
+		cylDeux.setOrigineX(150);
+
+		cylUn.setOrigineY(100);
+		cylDeux.setOrigineY(150);
+
+		// Lui appliquer la méthode afficher().
+		sphUn.afficher();
+		System.out.println();
+
+		sphDeux.afficher();
+		System.out.println();
+
+		// Lui appliquer les méthodes accesseurs de la classe (dans un System.out.println()).
+		System.out.println("Sphere Un : rayon " + sphUn.getRayon() + "\n");
+		
+		System.out.println("Sphere Deux : rayon " + sphDeux.getRayon() + "\n");
+
 
 		// Test Carre
+
 		System.out.println("Test Carre \n");
+
+		Carre carreUn = new Carre();
+		Carre carreDeux = new Carre(20, 20, 6);
 
 		Carre carreTrois;
 		carreTrois = new Carre (1, 1, 10);
@@ -117,5 +227,67 @@ public class HeritageTestFG3D {
 
 		System.out.println("Surface : " + carreTrois.surface()); // Surface : 900.0
 		System.out.println();
+
+		// 5.1) Pour en arriver au polymorphisme
+		// 1. Vous devriez avoir créé 12 objets (12 new, 2 par classe).
+		// Oui
+
+		// 2. Insérer la déclaration suivante pour créer un tableau de 12 éléments de type FormeGraphique et y ranger les formes graphiques créées :
+		FormeGraphique tabFormes[];
+
+		tabFormes = new FormeGraphique [12];
+
+		tabFormes[0] = fgUn; // variable référençant la première FormeGraphique créée
+		tabFormes[1] = fgDeux; // variable référençant la deuxième FormeGraphique créée
+		tabFormes[2] = rectUn; // variable référençant le premier Rectangle créé
+		tabFormes[3] = rectDeux; // variable référençant le deuxième Rectangle créé
+		tabFormes[4] = carreUn; // variable référençant le premier Carré créé
+		tabFormes[5] = carreDeux; // variable référençant le deuxieme Carré créé
+		tabFormes[6] = cerclUn; // variable référençant le premier Cercle créé
+		tabFormes[7] = cerclDeux; // variable référençant le deuxieme Cercle créé
+		tabFormes[8] = cylUn; // variable référençant le premier Cylindre créé
+		tabFormes[9] = cylDeux; // variable référençant le deuxieme Cylindre créé
+		tabFormes[10] = sphUn; // variable référençant la premiere Sphere créé
+		tabFormes[11] = sphDeux; // variable référençant la deuxieme Sphere créé
+
+		// 4. Compiler. OK ?
+		// Oui
+
+		// 5. Faire une boucle pour afficher l’indice courant (i), et appliquer surface(), volume() et appliquer afficher() à chaque élément du tableau.
+		for (int i = 0; i < tabFormes.length; i++) {
+
+			// Affichage indice
+			System.out.println("Indice : " + i);
+
+			// Surface et volume
+			System.out.println("Surface de la figure : " + tabFormes[i].surface());
+			System.out.println("Volume de la figure : " + tabFormes[i].volume());
+			
+			// Afficher
+			tabFormes[i].afficher();
+
+			// 8. 
+			System.out.println("HashCode de la figure : " + System.identityHashCode(tabFormes[i]));
+			System.out.println("Classe de la figure : " + tabFormes[i].getClass());
+		}
+
+		// Compiler. ok ?
+		// Oui
+
+		// 7. Quel est le résultat obtenu à l’exécution ? Quelles méthodes sont réellement appelées (classe de définition de la méthode appelée) ?
+		// On obtient le meme resultat que precedamment 
+		// Les methodes utilisees sont celles de FormeGraphique
+
+		// 8. Ajouter dans la boucle l’instruction suivante :
+		// System.out.println(System.identityHashCode(tabFormes[i]));
+		// System.out.println(tabFormes[i].getClass());
+
+		// 9. Quel est le résultat ?
+		// Le hash code de l'objet ainsi que sa classe
+
+		// A Noter : nous n’avions jusqu’à aujourd’hui jamais mis d’objets de nature différente dans un même tableau…​ Qu’ont en commun tous les objets pour que l’on puisse les ranger dans le tableau tabFormes ?
+		// Ils heritent tous de la class FormeGraphique
+
+		
 	}
 }

@@ -1,6 +1,9 @@
 
 // 4.1) 1. La classe Cercle comme héritant de FormeGraphique. C’est tout
 // soit simplement : public class Cercle extends FormeGraphique { }
+/**
+ * Classe representant un Cercle
+ */
 public class Cercle extends FormeGraphique {
     
     // 2. Écrire un petit test de la classe dans la méthode main() :
@@ -11,23 +14,43 @@ public class Cercle extends FormeGraphique {
     private double rayon;
 
     // 3. un constructeur par défaut initialisant les coordonnées du centre à 0 ainsi que le rayon à 0
+    /**
+     * Constructeur non parametre
+     */
     public Cercle() {
         super();
         this.rayon = 0;
     }
 
     // 4. un constructeur paramétré permettant d’initialiser correctement toutes les données d’un Cercle
+    /**
+     * Constructeur parametre 
+     * 
+     * @param pfCentreX IN : centre en X du cercle
+     * @param pfCentreY IN : centre en Y du cercle 
+     * @param pfRayon IN : rayon du cercle
+     */
     public Cercle(int pfCentreX, int pfCentreY, double pfRayon) {
         super(pfCentreX, pfCentreY);
         this.rayon = pfRayon;
     }
 
     // 5. une méthode accesseur (get) pour chaque attribut défini
+    /**
+     * Retourne le rayon du cercle
+     * 
+     * @return le rayon du cercle
+     */
     public double getRayon() {
         return this.rayon;
     }
 
     // 6. une méthode transformateur (set) pour chaque attribut défini
+    /**
+     * Permet de mofifier le rayon du cercle
+     * 
+     * @param pfRayon IN : nouveau rayon du cercle
+     */
     public void setRayon(double pfRayon) {
         this.rayon = pfRayon;
     }

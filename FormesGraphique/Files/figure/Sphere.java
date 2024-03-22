@@ -7,23 +7,43 @@ public class Sphere extends FormeGraphique {
     private double rayon;
 
     // 3. un constructeur par défaut initialisant les coordonnées du centre à 0 ainsi que le rayon à 0
+    /**
+     * Constructeur non parametre
+     */
     public Sphere() {
         super();
         this.rayon = 0;
     }
 
     // 4. un constructeur paramétré permettant d’initialiser correctement toutes les données d’une Sphere
+    /**
+     * Constructeur parametre
+     * 
+     * @param pfCentreX IN : abscisse X du centre de la sphere
+     * @param pfCentreY IN : ordonnee Y du centre de la sphere
+     * @param pfRayon   IN : rayon de la sphere
+     */
     public Sphere(int pfCentreX, int pfCentreY, double pfRayon) {
         super(pfCentreX, pfCentreY);
         this.rayon = pfRayon;
     }
 
     // 5. une méthode accesseur (get) pour chaque attribut défini
+    /**
+     * Retourne le rayon de la sphere
+     * 
+     * @return le rayon de la sphere
+     */
     public double getRayon() {
         return this.rayon;
     }
 
     // 6. une méthode transformateur (set) pour chaque attribut défini
+    /**
+     * Permet de modifer le rayon de la sphere
+     * 
+     * @param pfRayon IN : nouveau rayon de la sphere
+     */
     public void setRayon(double pfRayon) {
         this.rayon = pfRayon;
     }

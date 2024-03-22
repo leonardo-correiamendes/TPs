@@ -11,6 +11,9 @@ public class Rectangle extends FormeGraphique {
 	// 3. Combien la classe a-t-elle de constructeur(s) ?
 	// La classe a 2 contructeurs
 	// 1er constructeur
+	/**
+	 * Constructeur non parametre
+	 */
 	public Rectangle() {
 		super();
 		this.largeur = 0 ;
@@ -18,6 +21,14 @@ public class Rectangle extends FormeGraphique {
 	}
 	
 	// 2eme constructeur
+	/**
+	 * Constructeur parametre 
+	 * 
+	 * @param pfX IN : abscisse X du rectangle
+	 * @param pfY IN : ordonnee Y du rectangle
+	 * @param pfLarg IN : largeur du rectangle
+	 * @param pfLong IN : longueur du rectangle
+	 */
 	public Rectangle(int pfX, int pfY, int pfLarg, int pfLong) {
 		super(pfX, pfY);
 		this.largeur = pfLarg ;
@@ -27,11 +38,21 @@ public class Rectangle extends FormeGraphique {
 	// 4. Combien la classe définit-elle d’accesseur(s) (dans le code même de la classe) ?
 	// La classe definit autant de getter qu'il y a d'attributs, donc 2
 	// 1er getter
+	/**
+	 * Retourne la largeur du rectangle
+	 * 
+	 * @return la largeur du rectangle
+	 */
 	public int getLargeur() {
 		return this.largeur ;
 	}
 	
 	// 2eme getter
+	/**
+	 * Retourne la longueur du rectangle
+	 * 
+	 * @return la longueur du rectangle
+	 */
 	public int getLongueur() {
 		return this.longueur ;
 	}
@@ -39,6 +60,11 @@ public class Rectangle extends FormeGraphique {
 	// 5. Combien la classe définit-elle de transformateur(s) (dans le code même de la classe) ?
 	// La classe definit autant de setter qu'il y a d'attributs, donc 2
 	// 1er setter
+	/**
+	 * Permet de modifier la largeur du rectangle
+	 * 
+	 * @param pfLargeur IN : nouvelle largeur du rectangle
+	 */
 	public void setLargeur(int pfLargeur) {
 		this.largeur = pfLargeur;
 	}
@@ -47,6 +73,11 @@ public class Rectangle extends FormeGraphique {
 	// 6. La méthode setLongueur() est-elle une nouvelle méthode par rapport à FormeGraphique (existerait-elle si elle n’était pas 
 	// écrite dans Rectangle) ?
 	// Oui la methode setLongueur() est nouvdlle. Non elle n'existerait pas si elle n'etait pas ecrite dans Rectangle
+	/**
+	 * Permet de modifier la longueur du rectangle
+	 * 
+	 * @param pfLongueur IN : nouvelle longueur du rectangle
+	 */
 	public void setLongueur(int pfLongueur) {
 		this.longueur = pfLongueur;
 	}

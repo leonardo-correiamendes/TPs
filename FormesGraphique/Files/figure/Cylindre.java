@@ -8,6 +8,9 @@ public class Cylindre extends FormeGraphique {
     private int hauteur;
 
     // 3. un constructeur par défaut initialisant les coordonnées du centre à 0, le rayon à 0 ainsi que la hauteur à 0
+    /**
+     * Constructeur sans parametre
+     */
     public Cylindre() {
         super();
         this.rayon = 0;
@@ -15,6 +18,14 @@ public class Cylindre extends FormeGraphique {
     }
 
     // 4. un constructeur paramétré permettant d’initialiser correctement toutes les données d’un Cylindre
+    /**
+     * Constructeur parametre
+     * 
+     * @param pfCentreX IN : abscisse X du centre du cylindre
+     * @param pfCentreY IN : ordonnee Y du centre du cylindre
+     * @param pfRayon   IN : rayon du cylindre
+     * @param pfHauteur IN : hauteur du cylindre
+     */
     public Cylindre(int pfCentreX, int pfCentreY, double pfRayon, int pfHauteur) {
         super(pfCentreX, pfCentreY);
         this.rayon = pfRayon;
@@ -22,19 +33,38 @@ public class Cylindre extends FormeGraphique {
     }
 
     // 5. une méthode accesseur (get) pour chaque attribut défini
+    /**
+     * Retour le rayon du cylindre
+     * @return le rayon du cylindre
+     */
     public double getRayon() {
         return this.rayon;
     }
 
+    /**
+     * Retourne la hauteur du cylindre
+     * 
+     * @return la hauteur du cylindre
+     */
     public int getHauteur() {
         return this.hauteur;
     }
 
     // 6. une méthode transformateur (set) pour chaque attribut défini
+    /**
+     * Permet de modifier le rayon du cylindre
+     * 
+     * @param pfRayon IN : nouveau rayon du cylindre
+     */
     public void setRayon(double pfRayon) {
         this.rayon = pfRayon;
     }
 
+    /**
+     * Permet de modifier la hauteur du cylindre
+     * 
+     * @param pfHauteur IN : nouvelle hauteur du cylindre
+     */
     public void setHauteur(int pfHauteur) {
         this.hauteur = pfHauteur;
     }

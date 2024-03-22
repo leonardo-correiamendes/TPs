@@ -9,40 +9,48 @@ public class HeritageTestFG3D {
 		FormeGraphique fgDeux;
 		
 		fgUn = new FormeGraphique();
-		System.out.println("Test FormeGraphique 1");
+		System.out.println("Test FormeGraphique 1 \n");
 		fgUn.afficher();
+		System.out.println();
 		fgUn.setOrigineX(550);
 		fgUn.setOrigineY(660);
 		fgUn.afficher();
-		System.out.println("X : " + fgUn.getOrigineX());
-		System.out.println("Y : " + fgUn.getOrigineY());
-		System.out.println("Surface : " + fgUn.surface());
-		System.out.println("Volume : " + fgUn.volume());
+		System.out.println();
+		System.out.println("X de F1: " + fgUn.getOrigineX());
+		System.out.println("Y de F2: " + fgUn.getOrigineY());
+		System.out.println("Surface de F1: " + fgUn.surface());
+		System.out.println("Volume F1 : " + fgUn.volume());
+		System.out.println();
 				
 		fgDeux = new FormeGraphique(100, 200);		
 		System.out.println("Test FormeGraphique 2");
+		System.out.println();
 		fgDeux.afficher();
+		System.out.println();
 		fgDeux.setOrigineX(550);
 		fgDeux.setOrigineY(660);
 		fgDeux.afficher();
-		System.out.println("X : " + fgDeux.getOrigineX());
-		System.out.println("Y : " + fgDeux.getOrigineY());
-		System.out.println("Surface : " + fgDeux.surface());
-		System.out.println("Volume : " + fgDeux.volume());
-
+		System.out.println();
+		System.out.println("X de F2 : " + fgDeux.getOrigineX());
+		System.out.println("Y de F2: " + fgDeux.getOrigineY());
+		System.out.println("Surface de F2 : " + fgDeux.surface());
+		System.out.println("Volume de F2: " + fgDeux.volume());
 		System.out.println();
 
 		// 15. Écrire un petit test de la classe dans la méthode main() déjà proposée.
 
 		// Créer un objet avec chaque constructeur défini dans la classe (x constructeurs ⇒ x création d’objets différentes).
+		System.out.println("Test Rectangle \n");
 		Rectangle rectUn = new Rectangle();
 		Rectangle rectDeux = new Rectangle(2, 2, 4, 4);
 
 		// Pour chaque objet créé :
 		// Lui appliquer la méthode afficher().
+		System.out.println("Rectangle 1 :");
 		rectUn.afficher();
 		System.out.println();
 
+		System.out.println("Rectangle 2 :");
 		rectDeux.afficher();
 		System.out.println();
 
@@ -61,9 +69,11 @@ public class HeritageTestFG3D {
 		rectDeux.setOrigineY(10);
 
 		// Lui appliquer la méthode afficher().
+		System.out.println("Rectangle 1 :");
 		rectUn.afficher();
 		System.out.println();
 
+		System.out.println("Rectangle 2 :");
 		rectDeux.afficher();
 		System.out.println();
 
@@ -83,10 +93,14 @@ public class HeritageTestFG3D {
 		Cercle cerclUn = new Cercle();
 		Cercle cerclDeux = new Cercle(15, 15, 4);
 
-		// b. Lui appliquer la méthode afficher() héritée.
+		System.out.println("Test Cercle \n");
+
+		// b. Lui appliquer la méthode afficher() héritée.:
+		System.out.println("Cercle 1 :");
 		cerclUn.afficher();
 		System.out.println();
 
+		System.out.println("Cercle 2 :");
 		cerclDeux.afficher();
 		System.out.println();
 
@@ -102,8 +116,13 @@ public class HeritageTestFG3D {
 		cerclDeux.setOrigineY(25);
 
 		// Lui appliquer la méthode afficher().
+		System.out.println("Cercle 1 :");
 		cerclUn.afficher();
+		System.out.println();
+
+		System.out.println("Cercle 2 :");
 		cerclDeux.afficher();
+		System.out.println();
 
 		// Lui appliquer les méthodes accesseurs de la classe (dans un System.out.println())
 		System.out.println("Cercle Un : rayon " + cerclUn.getRayon() + "\n");
@@ -120,11 +139,15 @@ public class HeritageTestFG3D {
 		Cylindre cylUn = new Cylindre();
 		Cylindre cylDeux = new Cylindre(40, 40, 10, 3);
 
+		System.out.println("Test Cylindre \n");
+
 		// Pour chaque objet créé :
 		// appliquer la méthode afficher().
+		System.out.println("Cylindre 1 :");
 		cylUn.afficher();
 		System.out.println();
 
+		System.out.println("Cylindre 2 :");
 		cylDeux.afficher();
 		System.out.println();
 
@@ -143,9 +166,11 @@ public class HeritageTestFG3D {
 		cylDeux.setOrigineY(80);
 
 		// Lui appliquer la méthode afficher().
+		System.out.println("Cylindre 1 :");
 		cylUn.afficher();
 		System.out.println();
 
+		System.out.println("Cylindre 2 :");
 		cylDeux.afficher();
 		System.out.println();
 
@@ -168,10 +193,14 @@ public class HeritageTestFG3D {
 		Sphere sphUn = new Sphere();
 		Sphere sphDeux = new Sphere(50, 50, 20);
 
+		System.out.println("Test Sphere");
+
 		// appliquer la méthode afficher().
+		System.out.println("Sphere 1 :");
 		sphUn.afficher();
 		System.out.println();
 
+		System.out.println("Sphere 2 :");
 		sphDeux.afficher();
 		System.out.println();
 
@@ -187,9 +216,11 @@ public class HeritageTestFG3D {
 		cylDeux.setOrigineY(150);
 
 		// Lui appliquer la méthode afficher().
+		System.out.println("Sphere 1 :");
 		sphUn.afficher();
 		System.out.println();
 
+		System.out.println("Sphere 2 :");
 		sphDeux.afficher();
 		System.out.println();
 
@@ -205,28 +236,6 @@ public class HeritageTestFG3D {
 
 		Carre carreUn = new Carre();
 		Carre carreDeux = new Carre(20, 20, 6);
-
-		Carre carreTrois;
-		carreTrois = new Carre (1, 1, 10);
-		carreTrois.afficher();
-		System.out.println();
-
-		System.out.println("Surface : " + carreTrois.surface()); // Surface :100.0
-		System.out.println();
-
-		carreTrois.setHauteur(20);
-		carreTrois.afficher();
-		System.out.println();
-
-		System.out.println("Surface : " + carreTrois.surface()); // Surface : 400.0
-		System.out.println();
-
-		carreTrois.setLongueur(30);
-		carreTrois.afficher();
-		System.out.println();
-
-		System.out.println("Surface : " + carreTrois.surface()); // Surface : 900.0
-		System.out.println();
 
 		// 5.1) Pour en arriver au polymorphisme
 		// 1. Vous devriez avoir créé 12 objets (12 new, 2 par classe).
@@ -257,18 +266,20 @@ public class HeritageTestFG3D {
 		for (int i = 0; i < tabFormes.length; i++) {
 
 			// Affichage indice
-			System.out.println("Indice : " + i);
+			System.out.println("Indice : " + i + "\n");
 
 			// Surface et volume
 			System.out.println("Surface de la figure : " + tabFormes[i].surface());
-			System.out.println("Volume de la figure : " + tabFormes[i].volume());
+			System.out.println("Volume de la figure : " + tabFormes[i].volume() + "\n");
 			
 			// Afficher
 			tabFormes[i].afficher();
+			System.out.println();
 
 			// 8. 
 			System.out.println("HashCode de la figure : " + System.identityHashCode(tabFormes[i]));
 			System.out.println("Classe de la figure : " + tabFormes[i].getClass());
+			System.out.println("\n");
 		}
 
 		// Compiler. ok ?
